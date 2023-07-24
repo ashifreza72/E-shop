@@ -5,28 +5,20 @@ import ProductCard from "../Components/ProductCard/ProductCard";
 import styles from "../styles/styles";
 import { productData } from "../Static/data";
 
-const ProductsPage = () => {
-  const [searchParams] = useSearchParams();
-  const categoryData = searchParams.get("category");
+const BestSellingPage = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    if (categoryData === null) {
-      const d =
-        productData && productData.sort((a, b) => a.total_sell - b.total_sell);
-      setData(d);
-    } else {
-      const d =
-        productData && productData.filter((i) => i.category === categoryData);
-      setData(d);
-    }
+    const d =
+      productData && productData.sort((a, b) => b.total_sell - a.total_sell);
+    setData(d);
     //    window.scrollTo(0,0);
   }, []);
 
   return (
     <>
       <div>
-        <Header activeHeading={3} />
+        <Header activeHeading={2} />
         <br />
         <br />
         <div className={`${styles.section}`}>
@@ -34,15 +26,10 @@ const ProductsPage = () => {
             {data &&
               data.map((i, index) => <ProductCard data={i} key={index} />)}
           </div>
-          {data && data.length === 0 ? (
-            <h1 className="text-center w-full pb-[100px] text-[20px]">
-              No products Found!
-            </h1>
-          ) : null}
         </div>
       </div>
     </>
   );
 };
 
-export default ProductsPage;
+export default BestSellingPage;
