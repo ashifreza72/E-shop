@@ -15,6 +15,7 @@ import {
   FAQPage,
   ProductDetailsPage,
   ProfilePage,
+  ShopCreatePage,
 } from "./Routes.js";
 
 import Store from "./redux/store";
@@ -46,6 +47,14 @@ const App = () => {
             <Route path="/events" element={<EventsPage />} />
             <Route path="/faq" element={<FAQPage />} />
             <Route
+              path="/checkout"
+              element={
+                <ProtectedRoute isAuthenticated={isAuthenticated}>
+                  <ProfilePage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
               path="/profile"
               element={
                 <ProtectedRoute isAuthenticated={isAuthenticated}>
@@ -53,6 +62,7 @@ const App = () => {
                 </ProtectedRoute>
               }
             />
+            <Route path="/shop-create" element={<ShopCreatePage />} />
           </Routes>
           <ToastContainer
             position="top-center"
