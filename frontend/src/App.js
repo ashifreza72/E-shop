@@ -15,11 +15,13 @@ import {
   FAQPage,
   ProductDetailsPage,
   ProfilePage,
-  ShopCreatePage,
+  ShopCreate,
+  SellerActivationPage,
+  ShopLoginPage,
 } from "./Routes.js";
 
 import Store from "./redux/store";
-import { loadUser } from "./redux/actions/user";
+import { loadSeller, loadUser } from "./redux/actions/user";
 import { useSelector } from "react-redux";
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -27,6 +29,7 @@ const App = () => {
   const { loading, isAuthenticated } = useSelector((state) => state.user);
   useEffect(() => {
     Store.dispatch(loadUser());
+    Store.dispatch(loadSeller());
   }, []);
 
   return (
@@ -34,13 +37,20 @@ const App = () => {
       {loading ? null : (
         <BrowserRouter>
           <Routes>
-            <Route path="" element={<HomePage />} />
+            <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/sign-up" element={<SignupPage />} />
+
             <Route
               path="/activation/:activation_token"
               element={<ActivationPage />}
             />
+
+            <Route
+              path="/seller/activation/:activation_token"
+              element={<SellerActivationPage />}
+            />
+
             <Route path="/products" element={<ProductsPage />} />
             <Route path="/product/:name" element={<ProductDetailsPage />} />
             <Route path="/best-selling" element={<BestSellingPage />} />
@@ -62,7 +72,8 @@ const App = () => {
                 </ProtectedRoute>
               }
             />
-            <Route path="/shop-create" element={<ShopCreatePage />} />
+            <Route path="/shop-create" element={<ShopCreate />} />
+            <Route path="/shop-login" element={<ShopLoginPage />} />
           </Routes>
           <ToastContainer
             position="top-center"
