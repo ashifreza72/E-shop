@@ -6,10 +6,8 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { server } from "../../server";
 import { RxAvatar } from "react-icons/rx";
-// import { post } from "../../../";
 
 const ShopCreate = () => {
-  // const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState();

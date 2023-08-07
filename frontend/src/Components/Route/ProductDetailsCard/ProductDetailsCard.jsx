@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { RxCross1 } from "react-icons/rx";
-import styles from "../../styles/styles";
+
 import {
   AiFillHeart,
   AiOutlineHeart,
   AiOutlineMessage,
   AiOutlineShoppingCart,
 } from "react-icons/ai";
+import styles from "../../../styles/styles";
 
 const ProductDetailsCard = ({ setOpen, data }) => {
   const [count, setCount] = useState(1);

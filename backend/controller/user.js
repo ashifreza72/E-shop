@@ -14,7 +14,7 @@ const { isAuthenticated } = require("../middleware/auth");
 
 router.post("/create-user", upload.single("file"), async (req, res, next) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, phoneNumber } = req.body;
     const userEmail = await User.findOne({ email });
 
     if (userEmail) {
@@ -35,6 +35,7 @@ router.post("/create-user", upload.single("file"), async (req, res, next) => {
     const user = {
       name: name,
       email: email,
+      phoneNumber: phoneNumber,
       password: password,
       avatar: fileUrl,
     };
@@ -82,7 +83,7 @@ router.post(
         return next(new ErrorHandler("Invalid token", 400));
       }
 
-      const { name, email, password, avatar } = newUser;
+      const { name, email, password, avatar, phoneNumber } = newUser;
       let user = await User.findOne({ email });
 
       if (user) {
@@ -92,6 +93,7 @@ router.post(
       user = await User.create({
         name,
         email,
+        phoneNumber,
         avatar,
         password,
       });
@@ -164,7 +166,7 @@ router.get(
   })
 );
 
-// logout user
+// log out user
 router.get(
   "/logout",
   isAuthenticated,

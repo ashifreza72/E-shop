@@ -5,12 +5,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { server } from "../../server";
+import { useSelector } from "react-redux";
 
 const ShopLogin = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
+  const { seller } = useSelector((state) => state.seller);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,9 +28,10 @@ const ShopLogin = () => {
       )
       .then((res) => {
         toast.success("Login Success!");
-        navigate("/shop/:id");
+        // navigate("/shop/:id");
+        navigate("/dashboard");
 
-        // window.location.reload(true);
+        window.location.reload(true);
       })
       .catch((err) => {
         toast.error(err.response.data.message);

@@ -1,7 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 
 const initialState = {
-  isSeller: false,
+  isLoading: true,
 };
 
 export const sellerReducer = createReducer(initialState, {
@@ -11,7 +11,7 @@ export const sellerReducer = createReducer(initialState, {
   LoadSellerSuccess: (state, action) => {
     state.isSeller = true;
     state.isLoading = false;
-    state.Seller = action.payload;
+    state.seller = action.payload;
   },
   LoadSellerFail: (state, action) => {
     state.isLoading = false;

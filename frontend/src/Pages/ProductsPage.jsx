@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import Header from "../Components/Layout/Header";
-import ProductCard from "../Components/ProductCard/ProductCard";
+import ProductCard from "../Components/Route/ProductCard/ProductCard";
 import styles from "../styles/styles";
 import { productData } from "../Static/data";
 
